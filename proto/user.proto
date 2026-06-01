@@ -1,0 +1,51 @@
+syntax = "proto3";
+
+package user;
+
+import "google/protobuf/timestamp.proto";
+
+option go_package = "/user";
+
+message User {
+    string username = 1;
+    string email = 2;
+    string password = 3;
+    string fullname = 4;
+    bool is_superuser = 5;
+    bool is_active = 6;
+    bool is_banned = 7;
+    google.protobuf.Timestamp created_at = 8;
+}
+
+message UserInfo {
+    string username = 1;
+    string email = 2;
+    string password = 3;
+}
+
+message UserQuery {
+    string id = 1;
+    string username = 2;
+    string email = 3;
+}
+
+message UserQueryNewPassword {
+    UserQuery user_query = 1;
+    string old_password = 2;
+    string new_password = 3;
+}
+
+message Success {
+    bool success = 1;
+}
+
+service UserService {
+    rpc Register (User) returns (Success) {};
+    rpc GetUser (UserQuery) returns (User) {};
+    rpc GetUserInfo (UserQuery) returns (UserInfo) {};
+    rpc ChangePassword (UserQueryNewPassword) returns (Success) {}
+    rpc InactivateUser (UserQuery) returns (Success) {};
+    rpc RestoreUser (UserQuery) returns (Success) {};
+    rpc BanUser (UserQuery) returns (Success) {};
+    rpc UnbanUser (UserQuery) returns (Success) {};
+}
