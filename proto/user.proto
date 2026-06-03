@@ -7,14 +7,15 @@ import "google/protobuf/timestamp.proto";
 option go_package = "/user";
 
 message User {
-    string username = 1;
-    string email = 2;
-    string password = 3;
-    string fullname = 4;
-    bool is_superuser = 5;
-    bool is_active = 6;
-    bool is_banned = 7;
-    google.protobuf.Timestamp created_at = 8;
+    string id = 1;
+    string username = 2;
+    string email = 3;
+    string password = 4;
+    string fullname = 5;
+    bool is_superuser = 6;
+    bool is_active = 7;
+    bool is_banned = 8;
+    google.protobuf.Timestamp created_at = 9;
 }
 
 message UserInfo {
