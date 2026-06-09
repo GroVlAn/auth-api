@@ -85,9 +85,9 @@ func (x *AuthUser) GetPassword() string {
 type RefreshToken struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Token         string                 `protobuf:"bytes,1,opt,name=token,proto3" json:"token,omitempty"`
-	StartTtl      *timestamppb.Timestamp `protobuf:"bytes,2,opt,name=start_ttl,json=startTtl,proto3" json:"start_ttl,omitempty"`
-	EndTtl        *timestamppb.Timestamp `protobuf:"bytes,3,opt,name=end_ttl,json=endTtl,proto3" json:"end_ttl,omitempty"`
-	UserId        string                 `protobuf:"bytes,4,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	Start_TTL     *timestamppb.Timestamp `protobuf:"bytes,2,opt,name=start_TTL,json=startTTL,proto3" json:"start_TTL,omitempty"`
+	End_TTL       *timestamppb.Timestamp `protobuf:"bytes,3,opt,name=end_TTL,json=endTTL,proto3" json:"end_TTL,omitempty"`
+	User_ID       string                 `protobuf:"bytes,4,opt,name=user_ID,json=userID,proto3" json:"user_ID,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -129,23 +129,23 @@ func (x *RefreshToken) GetToken() string {
 	return ""
 }
 
-func (x *RefreshToken) GetStartTtl() *timestamppb.Timestamp {
+func (x *RefreshToken) GetStart_TTL() *timestamppb.Timestamp {
 	if x != nil {
-		return x.StartTtl
+		return x.Start_TTL
 	}
 	return nil
 }
 
-func (x *RefreshToken) GetEndTtl() *timestamppb.Timestamp {
+func (x *RefreshToken) GetEnd_TTL() *timestamppb.Timestamp {
 	if x != nil {
-		return x.EndTtl
+		return x.End_TTL
 	}
 	return nil
 }
 
-func (x *RefreshToken) GetUserId() string {
+func (x *RefreshToken) GetUser_ID() string {
 	if x != nil {
-		return x.UserId
+		return x.User_ID
 	}
 	return ""
 }
@@ -153,9 +153,9 @@ func (x *RefreshToken) GetUserId() string {
 type AccessToken struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Token         string                 `protobuf:"bytes,1,opt,name=token,proto3" json:"token,omitempty"`
-	StartTtl      *timestamppb.Timestamp `protobuf:"bytes,2,opt,name=start_ttl,json=startTtl,proto3" json:"start_ttl,omitempty"`
-	EndTtl        *timestamppb.Timestamp `protobuf:"bytes,3,opt,name=end_ttl,json=endTtl,proto3" json:"end_ttl,omitempty"`
-	UserId        string                 `protobuf:"bytes,4,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	Start_TTL     *timestamppb.Timestamp `protobuf:"bytes,2,opt,name=start_TTL,json=startTTL,proto3" json:"start_TTL,omitempty"`
+	End_TTL       *timestamppb.Timestamp `protobuf:"bytes,3,opt,name=end_TTL,json=endTTL,proto3" json:"end_TTL,omitempty"`
+	User_ID       string                 `protobuf:"bytes,4,opt,name=user_ID,json=userID,proto3" json:"user_ID,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -197,32 +197,32 @@ func (x *AccessToken) GetToken() string {
 	return ""
 }
 
-func (x *AccessToken) GetStartTtl() *timestamppb.Timestamp {
+func (x *AccessToken) GetStart_TTL() *timestamppb.Timestamp {
 	if x != nil {
-		return x.StartTtl
+		return x.Start_TTL
 	}
 	return nil
 }
 
-func (x *AccessToken) GetEndTtl() *timestamppb.Timestamp {
+func (x *AccessToken) GetEnd_TTL() *timestamppb.Timestamp {
 	if x != nil {
-		return x.EndTtl
+		return x.End_TTL
 	}
 	return nil
 }
 
-func (x *AccessToken) GetUserId() string {
+func (x *AccessToken) GetUser_ID() string {
 	if x != nil {
-		return x.UserId
+		return x.User_ID
 	}
 	return ""
 }
 
 type UserSession struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	ID            string                 `protobuf:"bytes,1,opt,name=ID,proto3" json:"ID,omitempty"`
 	UserAgent     string                 `protobuf:"bytes,2,opt,name=user_agent,json=userAgent,proto3" json:"user_agent,omitempty"`
-	Ip            string                 `protobuf:"bytes,3,opt,name=ip,proto3" json:"ip,omitempty"`
+	IP            string                 `protobuf:"bytes,3,opt,name=IP,proto3" json:"IP,omitempty"`
 	CreatedAt     *timestamppb.Timestamp `protobuf:"bytes,4,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
 	LastActiveAt  *timestamppb.Timestamp `protobuf:"bytes,5,opt,name=last_active_at,json=lastActiveAt,proto3" json:"last_active_at,omitempty"`
 	Current       bool                   `protobuf:"varint,6,opt,name=current,proto3" json:"current,omitempty"`
@@ -260,9 +260,9 @@ func (*UserSession) Descriptor() ([]byte, []int) {
 	return file_auth_proto_rawDescGZIP(), []int{3}
 }
 
-func (x *UserSession) GetId() string {
+func (x *UserSession) GetID() string {
 	if x != nil {
-		return x.Id
+		return x.ID
 	}
 	return ""
 }
@@ -274,9 +274,9 @@ func (x *UserSession) GetUserAgent() string {
 	return ""
 }
 
-func (x *UserSession) GetIp() string {
+func (x *UserSession) GetIP() string {
 	if x != nil {
-		return x.Ip
+		return x.IP
 	}
 	return ""
 }
@@ -400,7 +400,7 @@ func (x *Tokens) GetAccessToken() *AccessToken {
 
 type Success struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Success       bool                   `protobuf:"varint,1,opt,name=Success,proto3" json:"Success,omitempty"`
+	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -454,19 +454,19 @@ const file_auth_proto_rawDesc = "" +
 	"\bpassword\x18\x03 \x01(\tR\bpassword\"\xab\x01\n" +
 	"\fRefreshToken\x12\x14\n" +
 	"\x05token\x18\x01 \x01(\tR\x05token\x127\n" +
-	"\tstart_ttl\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\bstartTtl\x123\n" +
-	"\aend_ttl\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampR\x06endTtl\x12\x17\n" +
-	"\auser_id\x18\x04 \x01(\tR\x06userId\"\xaa\x01\n" +
+	"\tstart_TTL\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\bstartTTL\x123\n" +
+	"\aend_TTL\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampR\x06endTTL\x12\x17\n" +
+	"\auser_ID\x18\x04 \x01(\tR\x06userID\"\xaa\x01\n" +
 	"\vAccessToken\x12\x14\n" +
 	"\x05token\x18\x01 \x01(\tR\x05token\x127\n" +
-	"\tstart_ttl\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\bstartTtl\x123\n" +
-	"\aend_ttl\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampR\x06endTtl\x12\x17\n" +
-	"\auser_id\x18\x04 \x01(\tR\x06userId\"\xe3\x01\n" +
+	"\tstart_TTL\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\bstartTTL\x123\n" +
+	"\aend_TTL\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampR\x06endTTL\x12\x17\n" +
+	"\auser_ID\x18\x04 \x01(\tR\x06userID\"\xe3\x01\n" +
 	"\vUserSession\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\x12\x1d\n" +
+	"\x02ID\x18\x01 \x01(\tR\x02ID\x12\x1d\n" +
 	"\n" +
 	"user_agent\x18\x02 \x01(\tR\tuserAgent\x12\x0e\n" +
-	"\x02ip\x18\x03 \x01(\tR\x02ip\x129\n" +
+	"\x02IP\x18\x03 \x01(\tR\x02IP\x129\n" +
 	"\n" +
 	"created_at\x18\x04 \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\x12@\n" +
 	"\x0elast_active_at\x18\x05 \x01(\v2\x1a.google.protobuf.TimestampR\flastActiveAt\x12\x18\n" +
@@ -477,7 +477,7 @@ const file_auth_proto_rawDesc = "" +
 	"\rrefresh_token\x18\x01 \x01(\v2\x12.auth.RefreshTokenR\frefreshToken\x124\n" +
 	"\faccess_token\x18\x02 \x01(\v2\x11.auth.AccessTokenR\vaccessToken\"#\n" +
 	"\aSuccess\x12\x18\n" +
-	"\aSuccess\x18\x01 \x01(\bR\aSuccess2\x82\x02\n" +
+	"\asuccess\x18\x01 \x01(\bR\asuccess2\x82\x02\n" +
 	"\vAuthService\x12&\n" +
 	"\x04Auth\x12\x0e.auth.AuthUser\x1a\f.auth.Tokens\"\x00\x12-\n" +
 	"\aRefresh\x12\x12.auth.RefreshToken\x1a\f.auth.Tokens\"\x00\x12-\n" +
@@ -509,10 +509,10 @@ var file_auth_proto_goTypes = []any{
 	(*timestamppb.Timestamp)(nil), // 7: google.protobuf.Timestamp
 }
 var file_auth_proto_depIdxs = []int32{
-	7,  // 0: auth.RefreshToken.start_ttl:type_name -> google.protobuf.Timestamp
-	7,  // 1: auth.RefreshToken.end_ttl:type_name -> google.protobuf.Timestamp
-	7,  // 2: auth.AccessToken.start_ttl:type_name -> google.protobuf.Timestamp
-	7,  // 3: auth.AccessToken.end_ttl:type_name -> google.protobuf.Timestamp
+	7,  // 0: auth.RefreshToken.start_TTL:type_name -> google.protobuf.Timestamp
+	7,  // 1: auth.RefreshToken.end_TTL:type_name -> google.protobuf.Timestamp
+	7,  // 2: auth.AccessToken.start_TTL:type_name -> google.protobuf.Timestamp
+	7,  // 3: auth.AccessToken.end_TTL:type_name -> google.protobuf.Timestamp
 	7,  // 4: auth.UserSession.created_at:type_name -> google.protobuf.Timestamp
 	7,  // 5: auth.UserSession.last_active_at:type_name -> google.protobuf.Timestamp
 	3,  // 6: auth.UserSessions.user_sessions:type_name -> auth.UserSession
