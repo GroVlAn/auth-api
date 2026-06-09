@@ -134,7 +134,7 @@ type UserInfo struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Username      string                 `protobuf:"bytes,1,opt,name=username,proto3" json:"username,omitempty"`
 	Email         string                 `protobuf:"bytes,2,opt,name=email,proto3" json:"email,omitempty"`
-	Password      string                 `protobuf:"bytes,3,opt,name=password,proto3" json:"password,omitempty"`
+	Fullname      string                 `protobuf:"bytes,3,opt,name=fullname,proto3" json:"fullname,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -183,9 +183,9 @@ func (x *UserInfo) GetEmail() string {
 	return ""
 }
 
-func (x *UserInfo) GetPassword() string {
+func (x *UserInfo) GetFullname() string {
 	if x != nil {
-		return x.Password
+		return x.Fullname
 	}
 	return ""
 }
@@ -374,7 +374,7 @@ const file_user_proto_rawDesc = "" +
 	"\bUserInfo\x12\x1a\n" +
 	"\busername\x18\x01 \x01(\tR\busername\x12\x14\n" +
 	"\x05email\x18\x02 \x01(\tR\x05email\x12\x1a\n" +
-	"\bpassword\x18\x03 \x01(\tR\bpassword\"M\n" +
+	"\bfullname\x18\x03 \x01(\tR\bfullname\"M\n" +
 	"\tUserQuery\x12\x0e\n" +
 	"\x02ID\x18\x01 \x01(\tR\x02ID\x12\x1a\n" +
 	"\busername\x18\x02 \x01(\tR\busername\x12\x14\n" +
