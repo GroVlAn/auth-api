@@ -11,11 +11,12 @@ message User {
     string username = 2;
     string email = 3;
     string password = 4;
-    string fullname = 5;
-    bool is_superuser = 6;
-    bool is_active = 7;
-    bool is_banned = 8;
-    google.protobuf.Timestamp created_at = 9;
+    string password_hash = 5;
+    string fullname = 6;
+    bool is_superuser = 7;
+    bool is_active = 8;
+    bool is_banned = 9;
+    google.protobuf.Timestamp created_at = 10;
 }
 
 message UserInfo {

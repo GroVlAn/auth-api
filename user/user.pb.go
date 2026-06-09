@@ -28,11 +28,12 @@ type User struct {
 	Username      string                 `protobuf:"bytes,2,opt,name=username,proto3" json:"username,omitempty"`
 	Email         string                 `protobuf:"bytes,3,opt,name=email,proto3" json:"email,omitempty"`
 	Password      string                 `protobuf:"bytes,4,opt,name=password,proto3" json:"password,omitempty"`
-	Fullname      string                 `protobuf:"bytes,5,opt,name=fullname,proto3" json:"fullname,omitempty"`
-	IsSuperuser   bool                   `protobuf:"varint,6,opt,name=is_superuser,json=isSuperuser,proto3" json:"is_superuser,omitempty"`
-	IsActive      bool                   `protobuf:"varint,7,opt,name=is_active,json=isActive,proto3" json:"is_active,omitempty"`
-	IsBanned      bool                   `protobuf:"varint,8,opt,name=is_banned,json=isBanned,proto3" json:"is_banned,omitempty"`
-	CreatedAt     *timestamppb.Timestamp `protobuf:"bytes,9,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
+	PasswordHash  string                 `protobuf:"bytes,5,opt,name=password_hash,json=passwordHash,proto3" json:"password_hash,omitempty"`
+	Fullname      string                 `protobuf:"bytes,6,opt,name=fullname,proto3" json:"fullname,omitempty"`
+	IsSuperuser   bool                   `protobuf:"varint,7,opt,name=is_superuser,json=isSuperuser,proto3" json:"is_superuser,omitempty"`
+	IsActive      bool                   `protobuf:"varint,8,opt,name=is_active,json=isActive,proto3" json:"is_active,omitempty"`
+	IsBanned      bool                   `protobuf:"varint,9,opt,name=is_banned,json=isBanned,proto3" json:"is_banned,omitempty"`
+	CreatedAt     *timestamppb.Timestamp `protobuf:"bytes,10,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -91,6 +92,13 @@ func (x *User) GetEmail() string {
 func (x *User) GetPassword() string {
 	if x != nil {
 		return x.Password
+	}
+	return ""
+}
+
+func (x *User) GetPasswordHash() string {
+	if x != nil {
+		return x.PasswordHash
 	}
 	return ""
 }
@@ -359,18 +367,20 @@ var File_user_proto protoreflect.FileDescriptor
 const file_user_proto_rawDesc = "" +
 	"\n" +
 	"\n" +
-	"user.proto\x12\x04user\x1a\x1fgoogle/protobuf/timestamp.proto\"\x98\x02\n" +
+	"user.proto\x12\x04user\x1a\x1fgoogle/protobuf/timestamp.proto\"\xbd\x02\n" +
 	"\x04User\x12\x0e\n" +
 	"\x02ID\x18\x01 \x01(\tR\x02ID\x12\x1a\n" +
 	"\busername\x18\x02 \x01(\tR\busername\x12\x14\n" +
 	"\x05email\x18\x03 \x01(\tR\x05email\x12\x1a\n" +
-	"\bpassword\x18\x04 \x01(\tR\bpassword\x12\x1a\n" +
-	"\bfullname\x18\x05 \x01(\tR\bfullname\x12!\n" +
-	"\fis_superuser\x18\x06 \x01(\bR\visSuperuser\x12\x1b\n" +
-	"\tis_active\x18\a \x01(\bR\bisActive\x12\x1b\n" +
-	"\tis_banned\x18\b \x01(\bR\bisBanned\x129\n" +
+	"\bpassword\x18\x04 \x01(\tR\bpassword\x12#\n" +
+	"\rpassword_hash\x18\x05 \x01(\tR\fpasswordHash\x12\x1a\n" +
+	"\bfullname\x18\x06 \x01(\tR\bfullname\x12!\n" +
+	"\fis_superuser\x18\a \x01(\bR\visSuperuser\x12\x1b\n" +
+	"\tis_active\x18\b \x01(\bR\bisActive\x12\x1b\n" +
+	"\tis_banned\x18\t \x01(\bR\bisBanned\x129\n" +
 	"\n" +
-	"created_at\x18\t \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\"X\n" +
+	"created_at\x18\n" +
+	" \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\"X\n" +
 	"\bUserInfo\x12\x1a\n" +
 	"\busername\x18\x01 \x01(\tR\busername\x12\x14\n" +
 	"\x05email\x18\x02 \x01(\tR\x05email\x12\x1a\n" +
