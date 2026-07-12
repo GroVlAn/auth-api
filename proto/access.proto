@@ -1,0 +1,54 @@
+syntax = "proto3";
+
+package access;
+
+import "google/protobuf/timestamp.proto";
+
+option go_package = "/access";
+
+message Role {
+    string ID = 1;
+    string name = 2;
+    string description = 3;
+    bool is_default = 4;
+    google.protobuf.Timestamp created_at = 5;
+    google.protobuf.Timestamp updated_at = 6;
+}
+
+message Permission {
+    string ID = 1;
+    string name = 2;
+    string description = 3;
+    bool is_default = 4;
+    google.protobuf.Timestamp created_at = 5;
+    google.protobuf.Timestamp updated_at = 6;
+}
+
+message PermissionReq {
+    string role_name = 1;
+    Permission Permission = 2;
+}
+
+message Permissions {
+    repeated Permissions permissions = 1;
+}
+
+message UserID {
+    string user_ID = 1;
+}
+
+message RoleName {
+    string role_name = 1;
+}
+
+message Success {
+    bool success = 1;
+}
+
+service AccessService {
+    rpc CreateRole (Role) returns (Success) {};
+    rpc GetRole (UserID) returns (Role) {};
+    rpc CreatePermission (PermissionReq) returns (Success) {};
+    rpc GetPermissionsByUserID (UserID) returns (Permissions) {};
+    rpc GetPermissionsByRoleName (RoleName) returns (Permissions) {};
+}
