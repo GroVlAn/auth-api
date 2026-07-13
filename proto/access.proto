@@ -30,7 +30,7 @@ message PermissionReq {
 }
 
 message Permissions {
-    repeated Permissions permissions = 1;
+    repeated Permission permissions = 1;
 }
 
 message UserID {
