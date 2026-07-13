@@ -244,7 +244,7 @@ func (x *PermissionReq) GetPermission() *Permission {
 
 type Permissions struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Permissions   []*Permissions         `protobuf:"bytes,1,rep,name=permissions,proto3" json:"permissions,omitempty"`
+	Permissions   []*Permission          `protobuf:"bytes,1,rep,name=permissions,proto3" json:"permissions,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -279,7 +279,7 @@ func (*Permissions) Descriptor() ([]byte, []int) {
 	return file_access_proto_rawDescGZIP(), []int{3}
 }
 
-func (x *Permissions) GetPermissions() []*Permissions {
+func (x *Permissions) GetPermissions() []*Permission {
 	if x != nil {
 		return x.Permissions
 	}
@@ -448,9 +448,9 @@ const file_access_proto_rawDesc = "" +
 	"\trole_name\x18\x01 \x01(\tR\broleName\x122\n" +
 	"\n" +
 	"Permission\x18\x02 \x01(\v2\x12.access.PermissionR\n" +
-	"Permission\"D\n" +
-	"\vPermissions\x125\n" +
-	"\vpermissions\x18\x01 \x03(\v2\x13.access.PermissionsR\vpermissions\"!\n" +
+	"Permission\"C\n" +
+	"\vPermissions\x124\n" +
+	"\vpermissions\x18\x01 \x03(\v2\x12.access.PermissionR\vpermissions\"!\n" +
 	"\x06UserID\x12\x17\n" +
 	"\auser_ID\x18\x01 \x01(\tR\x06userID\"'\n" +
 	"\bRoleName\x12\x1b\n" +
@@ -494,7 +494,7 @@ var file_access_proto_depIdxs = []int32{
 	7,  // 2: access.Permission.created_at:type_name -> google.protobuf.Timestamp
 	7,  // 3: access.Permission.updated_at:type_name -> google.protobuf.Timestamp
 	1,  // 4: access.PermissionReq.Permission:type_name -> access.Permission
-	3,  // 5: access.Permissions.permissions:type_name -> access.Permissions
+	1,  // 5: access.Permissions.permissions:type_name -> access.Permission
 	0,  // 6: access.AccessService.CreateRole:input_type -> access.Role
 	4,  // 7: access.AccessService.GetRole:input_type -> access.UserID
 	2,  // 8: access.AccessService.CreatePermission:input_type -> access.PermissionReq
