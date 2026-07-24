@@ -24,6 +24,7 @@ const (
 	AccessService_CreatePermission_FullMethodName         = "/access.AccessService/CreatePermission"
 	AccessService_GetPermissionsByUserID_FullMethodName   = "/access.AccessService/GetPermissionsByUserID"
 	AccessService_GetPermissionsByRoleName_FullMethodName = "/access.AccessService/GetPermissionsByRoleName"
+	AccessService_AddUserRole_FullMethodName              = "/access.AccessService/AddUserRole"
 	AccessService_BindUserRole_FullMethodName             = "/access.AccessService/BindUserRole"
 	AccessService_ReplaceUserRole_FullMethodName          = "/access.AccessService/ReplaceUserRole"
 	AccessService_DeleteUserRole_FullMethodName           = "/access.AccessService/DeleteUserRole"
@@ -38,6 +39,7 @@ type AccessServiceClient interface {
 	CreatePermission(ctx context.Context, in *PermissionReq, opts ...grpc.CallOption) (*Success, error)
 	GetPermissionsByUserID(ctx context.Context, in *UserID, opts ...grpc.CallOption) (*Permissions, error)
 	GetPermissionsByRoleName(ctx context.Context, in *RoleName, opts ...grpc.CallOption) (*Permissions, error)
+	AddUserRole(ctx context.Context, in *UserIDRoleName, opts ...grpc.CallOption) (*Success, error)
 	BindUserRole(ctx context.Context, in *UserID, opts ...grpc.CallOption) (*Success, error)
 	ReplaceUserRole(ctx context.Context, in *UpdateUserRoleReq, opts ...grpc.CallOption) (*Success, error)
 	DeleteUserRole(ctx context.Context, in *UserIDRoleName, opts ...grpc.CallOption) (*Success, error)
@@ -101,6 +103,16 @@ func (c *accessServiceClient) GetPermissionsByRoleName(ctx context.Context, in *
 	return out, nil
 }
 
+func (c *accessServiceClient) AddUserRole(ctx context.Context, in *UserIDRoleName, opts ...grpc.CallOption) (*Success, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(Success)
+	err := c.cc.Invoke(ctx, AccessService_AddUserRole_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *accessServiceClient) BindUserRole(ctx context.Context, in *UserID, opts ...grpc.CallOption) (*Success, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(Success)
@@ -140,6 +152,7 @@ type AccessServiceServer interface {
 	CreatePermission(context.Context, *PermissionReq) (*Success, error)
 	GetPermissionsByUserID(context.Context, *UserID) (*Permissions, error)
 	GetPermissionsByRoleName(context.Context, *RoleName) (*Permissions, error)
+	AddUserRole(context.Context, *UserIDRoleName) (*Success, error)
 	BindUserRole(context.Context, *UserID) (*Success, error)
 	ReplaceUserRole(context.Context, *UpdateUserRoleReq) (*Success, error)
 	DeleteUserRole(context.Context, *UserIDRoleName) (*Success, error)
@@ -167,6 +180,9 @@ func (UnimplementedAccessServiceServer) GetPermissionsByUserID(context.Context, 
 }
 func (UnimplementedAccessServiceServer) GetPermissionsByRoleName(context.Context, *RoleName) (*Permissions, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetPermissionsByRoleName not implemented")
+}
+func (UnimplementedAccessServiceServer) AddUserRole(context.Context, *UserIDRoleName) (*Success, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AddUserRole not implemented")
 }
 func (UnimplementedAccessServiceServer) BindUserRole(context.Context, *UserID) (*Success, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method BindUserRole not implemented")
@@ -288,6 +304,24 @@ func _AccessService_GetPermissionsByRoleName_Handler(srv interface{}, ctx contex
 	return interceptor(ctx, in, info, handler)
 }
 
+func _AccessService_AddUserRole_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UserIDRoleName)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AccessServiceServer).AddUserRole(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AccessService_AddUserRole_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AccessServiceServer).AddUserRole(ctx, req.(*UserIDRoleName))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _AccessService_BindUserRole_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(UserID)
 	if err := dec(in); err != nil {
@@ -368,6 +402,10 @@ var AccessService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetPermissionsByRoleName",
 			Handler:    _AccessService_GetPermissionsByRoleName_Handler,
+		},
+		{
+			MethodName: "AddUserRole",
+			Handler:    _AccessService_AddUserRole_Handler,
 		},
 		{
 			MethodName: "BindUserRole",

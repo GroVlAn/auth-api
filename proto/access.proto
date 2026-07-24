@@ -62,6 +62,7 @@ service AccessService {
     rpc CreatePermission (PermissionReq) returns (Success) {};
     rpc GetPermissionsByUserID (UserID) returns (Permissions) {};
     rpc GetPermissionsByRoleName (RoleName) returns (Permissions) {};
+    rpc AddUserRole(UserIDRoleName) returns (Success) {};
     rpc BindUserRole(UserID) returns (Success) {};
     rpc ReplaceUserRole(UpdateUserRoleReq) returns (Success) {};
     rpc DeleteUserRole(UserIDRoleName) returns (Success) {};

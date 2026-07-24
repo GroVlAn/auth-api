@@ -575,14 +575,15 @@ const file_access_proto_rawDesc = "" +
 	"\bRoleName\x12\x1b\n" +
 	"\trole_name\x18\x01 \x01(\tR\broleName\"#\n" +
 	"\aSuccess\x12\x18\n" +
-	"\asuccess\x18\x01 \x01(\bR\asuccess2\xde\x03\n" +
+	"\asuccess\x18\x01 \x01(\bR\asuccess2\x98\x04\n" +
 	"\rAccessService\x12-\n" +
 	"\n" +
 	"CreateRole\x12\f.access.Role\x1a\x0f.access.Success\"\x00\x12)\n" +
 	"\aGetRole\x12\x0e.access.UserID\x1a\f.access.Role\"\x00\x12<\n" +
 	"\x10CreatePermission\x12\x15.access.PermissionReq\x1a\x0f.access.Success\"\x00\x12?\n" +
 	"\x16GetPermissionsByUserID\x12\x0e.access.UserID\x1a\x13.access.Permissions\"\x00\x12C\n" +
-	"\x18GetPermissionsByRoleName\x12\x10.access.RoleName\x1a\x13.access.Permissions\"\x00\x121\n" +
+	"\x18GetPermissionsByRoleName\x12\x10.access.RoleName\x1a\x13.access.Permissions\"\x00\x128\n" +
+	"\vAddUserRole\x12\x16.access.UserIDRoleName\x1a\x0f.access.Success\"\x00\x121\n" +
 	"\fBindUserRole\x12\x0e.access.UserID\x1a\x0f.access.Success\"\x00\x12?\n" +
 	"\x0fReplaceUserRole\x12\x19.access.UpdateUserRoleReq\x1a\x0f.access.Success\"\x00\x12;\n" +
 	"\x0eDeleteUserRole\x12\x16.access.UserIDRoleName\x1a\x0f.access.Success\"\x00B\tZ\a/accessb\x06proto3"
@@ -624,19 +625,21 @@ var file_access_proto_depIdxs = []int32{
 	2,  // 8: access.AccessService.CreatePermission:input_type -> access.PermissionReq
 	6,  // 9: access.AccessService.GetPermissionsByUserID:input_type -> access.UserID
 	7,  // 10: access.AccessService.GetPermissionsByRoleName:input_type -> access.RoleName
-	6,  // 11: access.AccessService.BindUserRole:input_type -> access.UserID
-	3,  // 12: access.AccessService.ReplaceUserRole:input_type -> access.UpdateUserRoleReq
-	4,  // 13: access.AccessService.DeleteUserRole:input_type -> access.UserIDRoleName
-	8,  // 14: access.AccessService.CreateRole:output_type -> access.Success
-	0,  // 15: access.AccessService.GetRole:output_type -> access.Role
-	8,  // 16: access.AccessService.CreatePermission:output_type -> access.Success
-	5,  // 17: access.AccessService.GetPermissionsByUserID:output_type -> access.Permissions
-	5,  // 18: access.AccessService.GetPermissionsByRoleName:output_type -> access.Permissions
-	8,  // 19: access.AccessService.BindUserRole:output_type -> access.Success
-	8,  // 20: access.AccessService.ReplaceUserRole:output_type -> access.Success
-	8,  // 21: access.AccessService.DeleteUserRole:output_type -> access.Success
-	14, // [14:22] is the sub-list for method output_type
-	6,  // [6:14] is the sub-list for method input_type
+	4,  // 11: access.AccessService.AddUserRole:input_type -> access.UserIDRoleName
+	6,  // 12: access.AccessService.BindUserRole:input_type -> access.UserID
+	3,  // 13: access.AccessService.ReplaceUserRole:input_type -> access.UpdateUserRoleReq
+	4,  // 14: access.AccessService.DeleteUserRole:input_type -> access.UserIDRoleName
+	8,  // 15: access.AccessService.CreateRole:output_type -> access.Success
+	0,  // 16: access.AccessService.GetRole:output_type -> access.Role
+	8,  // 17: access.AccessService.CreatePermission:output_type -> access.Success
+	5,  // 18: access.AccessService.GetPermissionsByUserID:output_type -> access.Permissions
+	5,  // 19: access.AccessService.GetPermissionsByRoleName:output_type -> access.Permissions
+	8,  // 20: access.AccessService.AddUserRole:output_type -> access.Success
+	8,  // 21: access.AccessService.BindUserRole:output_type -> access.Success
+	8,  // 22: access.AccessService.ReplaceUserRole:output_type -> access.Success
+	8,  // 23: access.AccessService.DeleteUserRole:output_type -> access.Success
+	15, // [15:24] is the sub-list for method output_type
+	6,  // [6:15] is the sub-list for method input_type
 	6,  // [6:6] is the sub-list for extension type_name
 	6,  // [6:6] is the sub-list for extension extendee
 	0,  // [0:6] is the sub-list for field type_name
