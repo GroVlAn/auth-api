@@ -25,6 +25,8 @@ const (
 	AccessService_GetPermissionsByUserID_FullMethodName   = "/access.AccessService/GetPermissionsByUserID"
 	AccessService_GetPermissionsByRoleName_FullMethodName = "/access.AccessService/GetPermissionsByRoleName"
 	AccessService_BindUserRole_FullMethodName             = "/access.AccessService/BindUserRole"
+	AccessService_ReplaceUserRole_FullMethodName          = "/access.AccessService/ReplaceUserRole"
+	AccessService_DeleteUserRole_FullMethodName           = "/access.AccessService/DeleteUserRole"
 )
 
 // AccessServiceClient is the client API for AccessService service.
@@ -37,6 +39,8 @@ type AccessServiceClient interface {
 	GetPermissionsByUserID(ctx context.Context, in *UserID, opts ...grpc.CallOption) (*Permissions, error)
 	GetPermissionsByRoleName(ctx context.Context, in *RoleName, opts ...grpc.CallOption) (*Permissions, error)
 	BindUserRole(ctx context.Context, in *UserID, opts ...grpc.CallOption) (*Success, error)
+	ReplaceUserRole(ctx context.Context, in *UpdateUserRoleReq, opts ...grpc.CallOption) (*Success, error)
+	DeleteUserRole(ctx context.Context, in *UserIDRoleName, opts ...grpc.CallOption) (*Success, error)
 }
 
 type accessServiceClient struct {
@@ -107,6 +111,26 @@ func (c *accessServiceClient) BindUserRole(ctx context.Context, in *UserID, opts
 	return out, nil
 }
 
+func (c *accessServiceClient) ReplaceUserRole(ctx context.Context, in *UpdateUserRoleReq, opts ...grpc.CallOption) (*Success, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(Success)
+	err := c.cc.Invoke(ctx, AccessService_ReplaceUserRole_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *accessServiceClient) DeleteUserRole(ctx context.Context, in *UserIDRoleName, opts ...grpc.CallOption) (*Success, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(Success)
+	err := c.cc.Invoke(ctx, AccessService_DeleteUserRole_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // AccessServiceServer is the server API for AccessService service.
 // All implementations must embed UnimplementedAccessServiceServer
 // for forward compatibility.
@@ -117,6 +141,8 @@ type AccessServiceServer interface {
 	GetPermissionsByUserID(context.Context, *UserID) (*Permissions, error)
 	GetPermissionsByRoleName(context.Context, *RoleName) (*Permissions, error)
 	BindUserRole(context.Context, *UserID) (*Success, error)
+	ReplaceUserRole(context.Context, *UpdateUserRoleReq) (*Success, error)
+	DeleteUserRole(context.Context, *UserIDRoleName) (*Success, error)
 	mustEmbedUnimplementedAccessServiceServer()
 }
 
@@ -144,6 +170,12 @@ func (UnimplementedAccessServiceServer) GetPermissionsByRoleName(context.Context
 }
 func (UnimplementedAccessServiceServer) BindUserRole(context.Context, *UserID) (*Success, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method BindUserRole not implemented")
+}
+func (UnimplementedAccessServiceServer) ReplaceUserRole(context.Context, *UpdateUserRoleReq) (*Success, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ReplaceUserRole not implemented")
+}
+func (UnimplementedAccessServiceServer) DeleteUserRole(context.Context, *UserIDRoleName) (*Success, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteUserRole not implemented")
 }
 func (UnimplementedAccessServiceServer) mustEmbedUnimplementedAccessServiceServer() {}
 func (UnimplementedAccessServiceServer) testEmbeddedByValue()                       {}
@@ -274,6 +306,42 @@ func _AccessService_BindUserRole_Handler(srv interface{}, ctx context.Context, d
 	return interceptor(ctx, in, info, handler)
 }
 
+func _AccessService_ReplaceUserRole_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateUserRoleReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AccessServiceServer).ReplaceUserRole(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AccessService_ReplaceUserRole_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AccessServiceServer).ReplaceUserRole(ctx, req.(*UpdateUserRoleReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AccessService_DeleteUserRole_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UserIDRoleName)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AccessServiceServer).DeleteUserRole(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AccessService_DeleteUserRole_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AccessServiceServer).DeleteUserRole(ctx, req.(*UserIDRoleName))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // AccessService_ServiceDesc is the grpc.ServiceDesc for AccessService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -304,6 +372,14 @@ var AccessService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "BindUserRole",
 			Handler:    _AccessService_BindUserRole_Handler,
+		},
+		{
+			MethodName: "ReplaceUserRole",
+			Handler:    _AccessService_ReplaceUserRole_Handler,
+		},
+		{
+			MethodName: "DeleteUserRole",
+			Handler:    _AccessService_DeleteUserRole_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

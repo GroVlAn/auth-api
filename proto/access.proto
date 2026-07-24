@@ -29,6 +29,17 @@ message PermissionReq {
     Permission Permission = 2;
 }
 
+message UpdateUserRoleReq {
+    string user_ID = 1;
+    string old_role_name = 2;
+    string new_role_name = 3;
+}
+
+message UserIDRoleName {
+    string user_ID = 1;
+    string role_name = 2;
+}
+
 message Permissions {
     repeated Permission permissions = 1;
 }
@@ -52,4 +63,6 @@ service AccessService {
     rpc GetPermissionsByUserID (UserID) returns (Permissions) {};
     rpc GetPermissionsByRoleName (RoleName) returns (Permissions) {};
     rpc BindUserRole(UserID) returns (Success) {};
+    rpc ReplaceUserRole(UpdateUserRoleReq) returns (Success) {};
+    rpc DeleteUserRole(UserIDRoleName) returns (Success) {};
 }
