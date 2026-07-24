@@ -456,14 +456,15 @@ const file_access_proto_rawDesc = "" +
 	"\bRoleName\x12\x1b\n" +
 	"\trole_name\x18\x01 \x01(\tR\broleName\"#\n" +
 	"\aSuccess\x12\x18\n" +
-	"\asuccess\x18\x01 \x01(\bR\asuccess2\xad\x02\n" +
+	"\asuccess\x18\x01 \x01(\bR\asuccess2\xe0\x02\n" +
 	"\rAccessService\x12-\n" +
 	"\n" +
 	"CreateRole\x12\f.access.Role\x1a\x0f.access.Success\"\x00\x12)\n" +
 	"\aGetRole\x12\x0e.access.UserID\x1a\f.access.Role\"\x00\x12<\n" +
 	"\x10CreatePermission\x12\x15.access.PermissionReq\x1a\x0f.access.Success\"\x00\x12?\n" +
 	"\x16GetPermissionsByUserID\x12\x0e.access.UserID\x1a\x13.access.Permissions\"\x00\x12C\n" +
-	"\x18GetPermissionsByRoleName\x12\x10.access.RoleName\x1a\x13.access.Permissions\"\x00B\tZ\a/accessb\x06proto3"
+	"\x18GetPermissionsByRoleName\x12\x10.access.RoleName\x1a\x13.access.Permissions\"\x00\x121\n" +
+	"\fBindUserRole\x12\x0e.access.UserID\x1a\x0f.access.Success\"\x00B\tZ\a/accessb\x06proto3"
 
 var (
 	file_access_proto_rawDescOnce sync.Once
@@ -500,13 +501,15 @@ var file_access_proto_depIdxs = []int32{
 	2,  // 8: access.AccessService.CreatePermission:input_type -> access.PermissionReq
 	4,  // 9: access.AccessService.GetPermissionsByUserID:input_type -> access.UserID
 	5,  // 10: access.AccessService.GetPermissionsByRoleName:input_type -> access.RoleName
-	6,  // 11: access.AccessService.CreateRole:output_type -> access.Success
-	0,  // 12: access.AccessService.GetRole:output_type -> access.Role
-	6,  // 13: access.AccessService.CreatePermission:output_type -> access.Success
-	3,  // 14: access.AccessService.GetPermissionsByUserID:output_type -> access.Permissions
-	3,  // 15: access.AccessService.GetPermissionsByRoleName:output_type -> access.Permissions
-	11, // [11:16] is the sub-list for method output_type
-	6,  // [6:11] is the sub-list for method input_type
+	4,  // 11: access.AccessService.BindUserRole:input_type -> access.UserID
+	6,  // 12: access.AccessService.CreateRole:output_type -> access.Success
+	0,  // 13: access.AccessService.GetRole:output_type -> access.Role
+	6,  // 14: access.AccessService.CreatePermission:output_type -> access.Success
+	3,  // 15: access.AccessService.GetPermissionsByUserID:output_type -> access.Permissions
+	3,  // 16: access.AccessService.GetPermissionsByRoleName:output_type -> access.Permissions
+	6,  // 17: access.AccessService.BindUserRole:output_type -> access.Success
+	12, // [12:18] is the sub-list for method output_type
+	6,  // [6:12] is the sub-list for method input_type
 	6,  // [6:6] is the sub-list for extension type_name
 	6,  // [6:6] is the sub-list for extension extendee
 	0,  // [0:6] is the sub-list for field type_name
