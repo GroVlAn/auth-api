@@ -20,7 +20,7 @@ const _ = grpc.SupportPackageIsVersion9
 
 const (
 	AccessService_CreateRole_FullMethodName               = "/access.AccessService/CreateRole"
-	AccessService_GetRole_FullMethodName                  = "/access.AccessService/GetRole"
+	AccessService_GetRoles_FullMethodName                 = "/access.AccessService/GetRoles"
 	AccessService_CreatePermission_FullMethodName         = "/access.AccessService/CreatePermission"
 	AccessService_GetPermissionsByUserID_FullMethodName   = "/access.AccessService/GetPermissionsByUserID"
 	AccessService_GetPermissionsByRoleName_FullMethodName = "/access.AccessService/GetPermissionsByRoleName"
@@ -35,7 +35,7 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type AccessServiceClient interface {
 	CreateRole(ctx context.Context, in *Role, opts ...grpc.CallOption) (*Success, error)
-	GetRole(ctx context.Context, in *UserID, opts ...grpc.CallOption) (*Role, error)
+	GetRoles(ctx context.Context, in *UserID, opts ...grpc.CallOption) (*Roles, error)
 	CreatePermission(ctx context.Context, in *PermissionReq, opts ...grpc.CallOption) (*Success, error)
 	GetPermissionsByUserID(ctx context.Context, in *UserID, opts ...grpc.CallOption) (*Permissions, error)
 	GetPermissionsByRoleName(ctx context.Context, in *RoleName, opts ...grpc.CallOption) (*Permissions, error)
@@ -63,10 +63,10 @@ func (c *accessServiceClient) CreateRole(ctx context.Context, in *Role, opts ...
 	return out, nil
 }
 
-func (c *accessServiceClient) GetRole(ctx context.Context, in *UserID, opts ...grpc.CallOption) (*Role, error) {
+func (c *accessServiceClient) GetRoles(ctx context.Context, in *UserID, opts ...grpc.CallOption) (*Roles, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(Role)
-	err := c.cc.Invoke(ctx, AccessService_GetRole_FullMethodName, in, out, cOpts...)
+	out := new(Roles)
+	err := c.cc.Invoke(ctx, AccessService_GetRoles_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -148,7 +148,7 @@ func (c *accessServiceClient) DeleteUserRole(ctx context.Context, in *UserIDRole
 // for forward compatibility.
 type AccessServiceServer interface {
 	CreateRole(context.Context, *Role) (*Success, error)
-	GetRole(context.Context, *UserID) (*Role, error)
+	GetRoles(context.Context, *UserID) (*Roles, error)
 	CreatePermission(context.Context, *PermissionReq) (*Success, error)
 	GetPermissionsByUserID(context.Context, *UserID) (*Permissions, error)
 	GetPermissionsByRoleName(context.Context, *RoleName) (*Permissions, error)
@@ -169,8 +169,8 @@ type UnimplementedAccessServiceServer struct{}
 func (UnimplementedAccessServiceServer) CreateRole(context.Context, *Role) (*Success, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateRole not implemented")
 }
-func (UnimplementedAccessServiceServer) GetRole(context.Context, *UserID) (*Role, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetRole not implemented")
+func (UnimplementedAccessServiceServer) GetRoles(context.Context, *UserID) (*Roles, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetRoles not implemented")
 }
 func (UnimplementedAccessServiceServer) CreatePermission(context.Context, *PermissionReq) (*Success, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreatePermission not implemented")
@@ -232,20 +232,20 @@ func _AccessService_CreateRole_Handler(srv interface{}, ctx context.Context, dec
 	return interceptor(ctx, in, info, handler)
 }
 
-func _AccessService_GetRole_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _AccessService_GetRoles_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(UserID)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(AccessServiceServer).GetRole(ctx, in)
+		return srv.(AccessServiceServer).GetRoles(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: AccessService_GetRole_FullMethodName,
+		FullMethod: AccessService_GetRoles_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AccessServiceServer).GetRole(ctx, req.(*UserID))
+		return srv.(AccessServiceServer).GetRoles(ctx, req.(*UserID))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -388,8 +388,8 @@ var AccessService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _AccessService_CreateRole_Handler,
 		},
 		{
-			MethodName: "GetRole",
-			Handler:    _AccessService_GetRole_Handler,
+			MethodName: "GetRoles",
+			Handler:    _AccessService_GetRoles_Handler,
 		},
 		{
 			MethodName: "CreatePermission",
