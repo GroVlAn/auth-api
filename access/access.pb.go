@@ -442,6 +442,50 @@ func (x *Permissions) GetPermissions() []*Permission {
 	return nil
 }
 
+type FullPermissions struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Permissions   []string               `protobuf:"bytes,1,rep,name=permissions,proto3" json:"permissions,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *FullPermissions) Reset() {
+	*x = FullPermissions{}
+	mi := &file_access_proto_msgTypes[7]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *FullPermissions) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*FullPermissions) ProtoMessage() {}
+
+func (x *FullPermissions) ProtoReflect() protoreflect.Message {
+	mi := &file_access_proto_msgTypes[7]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use FullPermissions.ProtoReflect.Descriptor instead.
+func (*FullPermissions) Descriptor() ([]byte, []int) {
+	return file_access_proto_rawDescGZIP(), []int{7}
+}
+
+func (x *FullPermissions) GetPermissions() []string {
+	if x != nil {
+		return x.Permissions
+	}
+	return nil
+}
+
 type UserID struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	User_ID       string                 `protobuf:"bytes,1,opt,name=user_ID,json=userID,proto3" json:"user_ID,omitempty"`
@@ -451,7 +495,7 @@ type UserID struct {
 
 func (x *UserID) Reset() {
 	*x = UserID{}
-	mi := &file_access_proto_msgTypes[7]
+	mi := &file_access_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -463,7 +507,7 @@ func (x *UserID) String() string {
 func (*UserID) ProtoMessage() {}
 
 func (x *UserID) ProtoReflect() protoreflect.Message {
-	mi := &file_access_proto_msgTypes[7]
+	mi := &file_access_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -476,7 +520,7 @@ func (x *UserID) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UserID.ProtoReflect.Descriptor instead.
 func (*UserID) Descriptor() ([]byte, []int) {
-	return file_access_proto_rawDescGZIP(), []int{7}
+	return file_access_proto_rawDescGZIP(), []int{8}
 }
 
 func (x *UserID) GetUser_ID() string {
@@ -495,7 +539,7 @@ type RoleName struct {
 
 func (x *RoleName) Reset() {
 	*x = RoleName{}
-	mi := &file_access_proto_msgTypes[8]
+	mi := &file_access_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -507,7 +551,7 @@ func (x *RoleName) String() string {
 func (*RoleName) ProtoMessage() {}
 
 func (x *RoleName) ProtoReflect() protoreflect.Message {
-	mi := &file_access_proto_msgTypes[8]
+	mi := &file_access_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -520,7 +564,7 @@ func (x *RoleName) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RoleName.ProtoReflect.Descriptor instead.
 func (*RoleName) Descriptor() ([]byte, []int) {
-	return file_access_proto_rawDescGZIP(), []int{8}
+	return file_access_proto_rawDescGZIP(), []int{9}
 }
 
 func (x *RoleName) GetRoleName() string {
@@ -539,7 +583,7 @@ type Success struct {
 
 func (x *Success) Reset() {
 	*x = Success{}
-	mi := &file_access_proto_msgTypes[9]
+	mi := &file_access_proto_msgTypes[10]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -551,7 +595,7 @@ func (x *Success) String() string {
 func (*Success) ProtoMessage() {}
 
 func (x *Success) ProtoReflect() protoreflect.Message {
-	mi := &file_access_proto_msgTypes[9]
+	mi := &file_access_proto_msgTypes[10]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -564,7 +608,7 @@ func (x *Success) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Success.ProtoReflect.Descriptor instead.
 func (*Success) Descriptor() ([]byte, []int) {
-	return file_access_proto_rawDescGZIP(), []int{9}
+	return file_access_proto_rawDescGZIP(), []int{10}
 }
 
 func (x *Success) GetSuccess() bool {
@@ -615,18 +659,21 @@ const file_access_proto_rawDesc = "" +
 	"\x05Roles\x12\"\n" +
 	"\x05roles\x18\x01 \x03(\v2\f.access.RoleR\x05roles\"C\n" +
 	"\vPermissions\x124\n" +
-	"\vpermissions\x18\x01 \x03(\v2\x12.access.PermissionR\vpermissions\"!\n" +
+	"\vpermissions\x18\x01 \x03(\v2\x12.access.PermissionR\vpermissions\"3\n" +
+	"\x0fFullPermissions\x12 \n" +
+	"\vpermissions\x18\x01 \x03(\tR\vpermissions\"!\n" +
 	"\x06UserID\x12\x17\n" +
 	"\auser_ID\x18\x01 \x01(\tR\x06userID\"'\n" +
 	"\bRoleName\x12\x1b\n" +
 	"\trole_name\x18\x01 \x01(\tR\broleName\"#\n" +
 	"\aSuccess\x12\x18\n" +
-	"\asuccess\x18\x01 \x01(\bR\asuccess2\x9a\x04\n" +
+	"\asuccess\x18\x01 \x01(\bR\asuccess2\xda\x04\n" +
 	"\rAccessService\x12-\n" +
 	"\n" +
 	"CreateRole\x12\f.access.Role\x1a\x0f.access.Success\"\x00\x12+\n" +
 	"\bGetRoles\x12\x0e.access.UserID\x1a\r.access.Roles\"\x00\x12<\n" +
-	"\x10CreatePermission\x12\x15.access.PermissionReq\x1a\x0f.access.Success\"\x00\x12?\n" +
+	"\x10CreatePermission\x12\x15.access.PermissionReq\x1a\x0f.access.Success\"\x00\x12>\n" +
+	"\x11GetFullPermission\x12\x0e.access.UserID\x1a\x17.access.FullPermissions\"\x00\x12?\n" +
 	"\x16GetPermissionsByUserID\x12\x0e.access.UserID\x1a\x13.access.Permissions\"\x00\x12C\n" +
 	"\x18GetPermissionsByRoleName\x12\x10.access.RoleName\x1a\x13.access.Permissions\"\x00\x128\n" +
 	"\vAddUserRole\x12\x16.access.UserIDRoleName\x1a\x0f.access.Success\"\x00\x121\n" +
@@ -646,7 +693,7 @@ func file_access_proto_rawDescGZIP() []byte {
 	return file_access_proto_rawDescData
 }
 
-var file_access_proto_msgTypes = make([]protoimpl.MessageInfo, 10)
+var file_access_proto_msgTypes = make([]protoimpl.MessageInfo, 11)
 var file_access_proto_goTypes = []any{
 	(*Role)(nil),                  // 0: access.Role
 	(*Permission)(nil),            // 1: access.Permission
@@ -655,39 +702,42 @@ var file_access_proto_goTypes = []any{
 	(*UserIDRoleName)(nil),        // 4: access.UserIDRoleName
 	(*Roles)(nil),                 // 5: access.Roles
 	(*Permissions)(nil),           // 6: access.Permissions
-	(*UserID)(nil),                // 7: access.UserID
-	(*RoleName)(nil),              // 8: access.RoleName
-	(*Success)(nil),               // 9: access.Success
-	(*timestamppb.Timestamp)(nil), // 10: google.protobuf.Timestamp
+	(*FullPermissions)(nil),       // 7: access.FullPermissions
+	(*UserID)(nil),                // 8: access.UserID
+	(*RoleName)(nil),              // 9: access.RoleName
+	(*Success)(nil),               // 10: access.Success
+	(*timestamppb.Timestamp)(nil), // 11: google.protobuf.Timestamp
 }
 var file_access_proto_depIdxs = []int32{
-	10, // 0: access.Role.created_at:type_name -> google.protobuf.Timestamp
-	10, // 1: access.Role.updated_at:type_name -> google.protobuf.Timestamp
-	10, // 2: access.Permission.created_at:type_name -> google.protobuf.Timestamp
-	10, // 3: access.Permission.updated_at:type_name -> google.protobuf.Timestamp
+	11, // 0: access.Role.created_at:type_name -> google.protobuf.Timestamp
+	11, // 1: access.Role.updated_at:type_name -> google.protobuf.Timestamp
+	11, // 2: access.Permission.created_at:type_name -> google.protobuf.Timestamp
+	11, // 3: access.Permission.updated_at:type_name -> google.protobuf.Timestamp
 	1,  // 4: access.PermissionReq.Permission:type_name -> access.Permission
 	0,  // 5: access.Roles.roles:type_name -> access.Role
 	1,  // 6: access.Permissions.permissions:type_name -> access.Permission
 	0,  // 7: access.AccessService.CreateRole:input_type -> access.Role
-	7,  // 8: access.AccessService.GetRoles:input_type -> access.UserID
+	8,  // 8: access.AccessService.GetRoles:input_type -> access.UserID
 	2,  // 9: access.AccessService.CreatePermission:input_type -> access.PermissionReq
-	7,  // 10: access.AccessService.GetPermissionsByUserID:input_type -> access.UserID
-	8,  // 11: access.AccessService.GetPermissionsByRoleName:input_type -> access.RoleName
-	4,  // 12: access.AccessService.AddUserRole:input_type -> access.UserIDRoleName
-	7,  // 13: access.AccessService.BindUserRole:input_type -> access.UserID
-	3,  // 14: access.AccessService.ReplaceUserRole:input_type -> access.UpdateUserRoleReq
-	4,  // 15: access.AccessService.DeleteUserRole:input_type -> access.UserIDRoleName
-	9,  // 16: access.AccessService.CreateRole:output_type -> access.Success
-	5,  // 17: access.AccessService.GetRoles:output_type -> access.Roles
-	9,  // 18: access.AccessService.CreatePermission:output_type -> access.Success
-	6,  // 19: access.AccessService.GetPermissionsByUserID:output_type -> access.Permissions
-	6,  // 20: access.AccessService.GetPermissionsByRoleName:output_type -> access.Permissions
-	9,  // 21: access.AccessService.AddUserRole:output_type -> access.Success
-	9,  // 22: access.AccessService.BindUserRole:output_type -> access.Success
-	9,  // 23: access.AccessService.ReplaceUserRole:output_type -> access.Success
-	9,  // 24: access.AccessService.DeleteUserRole:output_type -> access.Success
-	16, // [16:25] is the sub-list for method output_type
-	7,  // [7:16] is the sub-list for method input_type
+	8,  // 10: access.AccessService.GetFullPermission:input_type -> access.UserID
+	8,  // 11: access.AccessService.GetPermissionsByUserID:input_type -> access.UserID
+	9,  // 12: access.AccessService.GetPermissionsByRoleName:input_type -> access.RoleName
+	4,  // 13: access.AccessService.AddUserRole:input_type -> access.UserIDRoleName
+	8,  // 14: access.AccessService.BindUserRole:input_type -> access.UserID
+	3,  // 15: access.AccessService.ReplaceUserRole:input_type -> access.UpdateUserRoleReq
+	4,  // 16: access.AccessService.DeleteUserRole:input_type -> access.UserIDRoleName
+	10, // 17: access.AccessService.CreateRole:output_type -> access.Success
+	5,  // 18: access.AccessService.GetRoles:output_type -> access.Roles
+	10, // 19: access.AccessService.CreatePermission:output_type -> access.Success
+	7,  // 20: access.AccessService.GetFullPermission:output_type -> access.FullPermissions
+	6,  // 21: access.AccessService.GetPermissionsByUserID:output_type -> access.Permissions
+	6,  // 22: access.AccessService.GetPermissionsByRoleName:output_type -> access.Permissions
+	10, // 23: access.AccessService.AddUserRole:output_type -> access.Success
+	10, // 24: access.AccessService.BindUserRole:output_type -> access.Success
+	10, // 25: access.AccessService.ReplaceUserRole:output_type -> access.Success
+	10, // 26: access.AccessService.DeleteUserRole:output_type -> access.Success
+	17, // [17:27] is the sub-list for method output_type
+	7,  // [7:17] is the sub-list for method input_type
 	7,  // [7:7] is the sub-list for extension type_name
 	7,  // [7:7] is the sub-list for extension extendee
 	0,  // [0:7] is the sub-list for field type_name
@@ -704,7 +754,7 @@ func file_access_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_access_proto_rawDesc), len(file_access_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   10,
+			NumMessages:   11,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

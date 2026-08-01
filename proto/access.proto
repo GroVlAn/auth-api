@@ -48,6 +48,10 @@ message Permissions {
     repeated Permission permissions = 1;
 }
 
+message FullPermissions {
+    repeated string permissions = 1;
+}
+
 message UserID {
     string user_ID = 1;
 }
@@ -64,6 +68,7 @@ service AccessService {
     rpc CreateRole (Role) returns (Success) {};
     rpc GetRoles (UserID) returns (Roles) {};
     rpc CreatePermission (PermissionReq) returns (Success) {};
+    rpc GetFullPermission (UserID) returns (FullPermissions) {};
     rpc GetPermissionsByUserID (UserID) returns (Permissions) {};
     rpc GetPermissionsByRoleName (RoleName) returns (Permissions) {};
     rpc AddUserRole(UserIDRoleName) returns (Success) {};
