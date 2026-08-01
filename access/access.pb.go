@@ -667,13 +667,13 @@ const file_access_proto_rawDesc = "" +
 	"\bRoleName\x12\x1b\n" +
 	"\trole_name\x18\x01 \x01(\tR\broleName\"#\n" +
 	"\aSuccess\x12\x18\n" +
-	"\asuccess\x18\x01 \x01(\bR\asuccess2\xda\x04\n" +
+	"\asuccess\x18\x01 \x01(\bR\asuccess2\xdb\x04\n" +
 	"\rAccessService\x12-\n" +
 	"\n" +
 	"CreateRole\x12\f.access.Role\x1a\x0f.access.Success\"\x00\x12+\n" +
 	"\bGetRoles\x12\x0e.access.UserID\x1a\r.access.Roles\"\x00\x12<\n" +
-	"\x10CreatePermission\x12\x15.access.PermissionReq\x1a\x0f.access.Success\"\x00\x12>\n" +
-	"\x11GetFullPermission\x12\x0e.access.UserID\x1a\x17.access.FullPermissions\"\x00\x12?\n" +
+	"\x10CreatePermission\x12\x15.access.PermissionReq\x1a\x0f.access.Success\"\x00\x12?\n" +
+	"\x12GetFullPermissions\x12\x0e.access.UserID\x1a\x17.access.FullPermissions\"\x00\x12?\n" +
 	"\x16GetPermissionsByUserID\x12\x0e.access.UserID\x1a\x13.access.Permissions\"\x00\x12C\n" +
 	"\x18GetPermissionsByRoleName\x12\x10.access.RoleName\x1a\x13.access.Permissions\"\x00\x128\n" +
 	"\vAddUserRole\x12\x16.access.UserIDRoleName\x1a\x0f.access.Success\"\x00\x121\n" +
@@ -719,7 +719,7 @@ var file_access_proto_depIdxs = []int32{
 	0,  // 7: access.AccessService.CreateRole:input_type -> access.Role
 	8,  // 8: access.AccessService.GetRoles:input_type -> access.UserID
 	2,  // 9: access.AccessService.CreatePermission:input_type -> access.PermissionReq
-	8,  // 10: access.AccessService.GetFullPermission:input_type -> access.UserID
+	8,  // 10: access.AccessService.GetFullPermissions:input_type -> access.UserID
 	8,  // 11: access.AccessService.GetPermissionsByUserID:input_type -> access.UserID
 	9,  // 12: access.AccessService.GetPermissionsByRoleName:input_type -> access.RoleName
 	4,  // 13: access.AccessService.AddUserRole:input_type -> access.UserIDRoleName
@@ -729,7 +729,7 @@ var file_access_proto_depIdxs = []int32{
 	10, // 17: access.AccessService.CreateRole:output_type -> access.Success
 	5,  // 18: access.AccessService.GetRoles:output_type -> access.Roles
 	10, // 19: access.AccessService.CreatePermission:output_type -> access.Success
-	7,  // 20: access.AccessService.GetFullPermission:output_type -> access.FullPermissions
+	7,  // 20: access.AccessService.GetFullPermissions:output_type -> access.FullPermissions
 	6,  // 21: access.AccessService.GetPermissionsByUserID:output_type -> access.Permissions
 	6,  // 22: access.AccessService.GetPermissionsByRoleName:output_type -> access.Permissions
 	10, // 23: access.AccessService.AddUserRole:output_type -> access.Success
