@@ -49,7 +49,7 @@ message Success {
 }
 
 service AuthService {
-    rpc Auth (AuthUser) returns (Tokens) {};
+    rpc Login (AuthUser) returns (Tokens) {};
     rpc Refresh (RefreshToken) returns (Tokens) {};
     rpc Logout (RefreshToken) returns (Success) {};
     rpc LogoutAll (RefreshToken) returns (Success) {};

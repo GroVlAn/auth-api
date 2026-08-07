@@ -19,7 +19,7 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	AuthService_Auth_FullMethodName            = "/auth.AuthService/Auth"
+	AuthService_Login_FullMethodName           = "/auth.AuthService/Login"
 	AuthService_Refresh_FullMethodName         = "/auth.AuthService/Refresh"
 	AuthService_Logout_FullMethodName          = "/auth.AuthService/Logout"
 	AuthService_LogoutAll_FullMethodName       = "/auth.AuthService/LogoutAll"
@@ -30,7 +30,7 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type AuthServiceClient interface {
-	Auth(ctx context.Context, in *AuthUser, opts ...grpc.CallOption) (*Tokens, error)
+	Login(ctx context.Context, in *AuthUser, opts ...grpc.CallOption) (*Tokens, error)
 	Refresh(ctx context.Context, in *RefreshToken, opts ...grpc.CallOption) (*Tokens, error)
 	Logout(ctx context.Context, in *RefreshToken, opts ...grpc.CallOption) (*Success, error)
 	LogoutAll(ctx context.Context, in *RefreshToken, opts ...grpc.CallOption) (*Success, error)
@@ -45,10 +45,10 @@ func NewAuthServiceClient(cc grpc.ClientConnInterface) AuthServiceClient {
 	return &authServiceClient{cc}
 }
 
-func (c *authServiceClient) Auth(ctx context.Context, in *AuthUser, opts ...grpc.CallOption) (*Tokens, error) {
+func (c *authServiceClient) Login(ctx context.Context, in *AuthUser, opts ...grpc.CallOption) (*Tokens, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(Tokens)
-	err := c.cc.Invoke(ctx, AuthService_Auth_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, AuthService_Login_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -99,7 +99,7 @@ func (c *authServiceClient) GetUserSessions(ctx context.Context, in *RefreshToke
 // All implementations must embed UnimplementedAuthServiceServer
 // for forward compatibility.
 type AuthServiceServer interface {
-	Auth(context.Context, *AuthUser) (*Tokens, error)
+	Login(context.Context, *AuthUser) (*Tokens, error)
 	Refresh(context.Context, *RefreshToken) (*Tokens, error)
 	Logout(context.Context, *RefreshToken) (*Success, error)
 	LogoutAll(context.Context, *RefreshToken) (*Success, error)
@@ -114,8 +114,8 @@ type AuthServiceServer interface {
 // pointer dereference when methods are called.
 type UnimplementedAuthServiceServer struct{}
 
-func (UnimplementedAuthServiceServer) Auth(context.Context, *AuthUser) (*Tokens, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Auth not implemented")
+func (UnimplementedAuthServiceServer) Login(context.Context, *AuthUser) (*Tokens, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Login not implemented")
 }
 func (UnimplementedAuthServiceServer) Refresh(context.Context, *RefreshToken) (*Tokens, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Refresh not implemented")
@@ -150,20 +150,20 @@ func RegisterAuthServiceServer(s grpc.ServiceRegistrar, srv AuthServiceServer) {
 	s.RegisterService(&AuthService_ServiceDesc, srv)
 }
 
-func _AuthService_Auth_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _AuthService_Login_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(AuthUser)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(AuthServiceServer).Auth(ctx, in)
+		return srv.(AuthServiceServer).Login(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: AuthService_Auth_FullMethodName,
+		FullMethod: AuthService_Login_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AuthServiceServer).Auth(ctx, req.(*AuthUser))
+		return srv.(AuthServiceServer).Login(ctx, req.(*AuthUser))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -248,8 +248,8 @@ var AuthService_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*AuthServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "Auth",
-			Handler:    _AuthService_Auth_Handler,
+			MethodName: "Login",
+			Handler:    _AuthService_Login_Handler,
 		},
 		{
 			MethodName: "Refresh",

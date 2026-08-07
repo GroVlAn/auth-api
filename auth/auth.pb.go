@@ -477,9 +477,9 @@ const file_auth_proto_rawDesc = "" +
 	"\rrefresh_token\x18\x01 \x01(\v2\x12.auth.RefreshTokenR\frefreshToken\x124\n" +
 	"\faccess_token\x18\x02 \x01(\v2\x11.auth.AccessTokenR\vaccessToken\"#\n" +
 	"\aSuccess\x12\x18\n" +
-	"\asuccess\x18\x01 \x01(\bR\asuccess2\x82\x02\n" +
-	"\vAuthService\x12&\n" +
-	"\x04Auth\x12\x0e.auth.AuthUser\x1a\f.auth.Tokens\"\x00\x12-\n" +
+	"\asuccess\x18\x01 \x01(\bR\asuccess2\x83\x02\n" +
+	"\vAuthService\x12'\n" +
+	"\x05Login\x12\x0e.auth.AuthUser\x1a\f.auth.Tokens\"\x00\x12-\n" +
 	"\aRefresh\x12\x12.auth.RefreshToken\x1a\f.auth.Tokens\"\x00\x12-\n" +
 	"\x06Logout\x12\x12.auth.RefreshToken\x1a\r.auth.Success\"\x00\x120\n" +
 	"\tLogoutAll\x12\x12.auth.RefreshToken\x1a\r.auth.Success\"\x00\x12;\n" +
@@ -518,12 +518,12 @@ var file_auth_proto_depIdxs = []int32{
 	3,  // 6: auth.UserSessions.user_sessions:type_name -> auth.UserSession
 	1,  // 7: auth.Tokens.refresh_token:type_name -> auth.RefreshToken
 	2,  // 8: auth.Tokens.access_token:type_name -> auth.AccessToken
-	0,  // 9: auth.AuthService.Auth:input_type -> auth.AuthUser
+	0,  // 9: auth.AuthService.Login:input_type -> auth.AuthUser
 	1,  // 10: auth.AuthService.Refresh:input_type -> auth.RefreshToken
 	1,  // 11: auth.AuthService.Logout:input_type -> auth.RefreshToken
 	1,  // 12: auth.AuthService.LogoutAll:input_type -> auth.RefreshToken
 	1,  // 13: auth.AuthService.GetUserSessions:input_type -> auth.RefreshToken
-	5,  // 14: auth.AuthService.Auth:output_type -> auth.Tokens
+	5,  // 14: auth.AuthService.Login:output_type -> auth.Tokens
 	5,  // 15: auth.AuthService.Refresh:output_type -> auth.Tokens
 	6,  // 16: auth.AuthService.Logout:output_type -> auth.Success
 	6,  // 17: auth.AuthService.LogoutAll:output_type -> auth.Success
