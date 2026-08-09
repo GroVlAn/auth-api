@@ -88,6 +88,23 @@ api.UnimplementedAccessServiceServer
 
 This keeps the communication contract independent from the implementation of the service.
 
+## Generating Code:
+
+All `.proto` files are compiled using a `Makefile` target. Simply run:
+
+```bash
+make gen
+```
+
+This command executes:
+
+```bash
+protoc -I=proto \
+  --go_out=. --go_opt=paths=import \
+  --go-grpc_out=. --go-grpc_opt=paths=import \
+  proto/user.proto proto/auth.proto proto/access.proto
+```
+
 ## API Compatibility
 
 When changing a protobuf definition, special attention should be paid to backward compatibility.
@@ -107,3 +124,27 @@ string username = 3;
 rather than changing the meaning of existing field numbers.
 
 Breaking API changes should be introduced through a new API version when necessary.
+
+## Repository Structure
+
+```text
+auth-api/
+├── proto/                  # Protocol Buffer definitions
+│   ├── auth.proto          # Auth service contracts
+│   ├── user.proto          # User service contracts
+│   └── access.proto        # Access service (RBAC) contracts
+├── auth/                   # Generated Go code for auth service
+├── user/                   # Generated Go code for user service
+├── access/                 # Generated Go code for access service
+├── go.mod
+├── go.sum
+└── Makefile
+```
+
+## License
+
+This project is licensed under the MIT License – see the [LICENSE](LICENSE) file for details.
+
+You are free to use, modify, distribute, and sublicense the code for both commercial and non‑commercial purposes, provided that the original copyright notice and permission notice are included in all copies or substantial portions of the software.
+
+For more information, see the full [MIT License](https://opensource.org/licenses/MIT).
